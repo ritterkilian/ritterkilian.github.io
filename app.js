@@ -81,7 +81,7 @@
       inner = source(it.placeholder ? "" : it.src, alt, i + 1, pi + i, i > 1);
     }
     return `
-      <figure class="item${it.wide ? " wide" : ""}">
+      <figure class="item${it.wide ? " wide" : ""}"${it.plakat ? ' data-plakat="1"' : ""}>
         <div class="tile">${inner}</div>
         ${it.caption ? `<figcaption>${esc(it.caption)}</figcaption>` : ""}
       </figure>`;
@@ -355,9 +355,144 @@
       if (panel) panel.hidden = true;
     });
   }
+  /* ---------- Bild vergrößern und Diashow blättern ---------- */
+  /* Klick auf ein Projektbild: Es wächst aus seiner Kachel auf Bildschirmgröße
+     und lädt dabei die hochauflösende Fassung aus "gross/". Erneuter Klick,
+     Esc oder deutliches Scrollen lässt es in die Kachel zurückschrumpfen.
+     Diashow: Klick ins linke/rechte Drittel blättert (auch vergrößert),
+     Klick in die Mitte vergrößert bzw. schließt. Pfeiltasten blättern. */
+  let zoom = null;
+  const calm = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const largeSrc = src => src.replace(/([^/]+)$/, "gross/$1");
+  const zoneOf = (e, el) => {
+    const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width;
+    return x < 1 / 3 ? -1 : x > 2 / 3 ? 1 : 0;
+  };
+  const shownImg = tile => tile.querySelector(".slide.on img") || tile.querySelector(":scope > img");
+
+  function tileRect(img) {
+    const tile = img.closest(".tile"), r = tile.getBoundingClientRect();
+    return { left: r.left, top: r.top, width: r.width, height: r.height,
+      radius: parseFloat(getComputedStyle(tile).borderTopLeftRadius) || 0 };
+  }
+  // Zielgröße: ganz sichtbar im Fenster; Plakate in voller Breite (scrollbar).
+  function bigRect(ratio, plakat) {
+    const vw = window.innerWidth, vh = window.innerHeight, m = vw <= 760 ? 12 : 32;
+    let w = vw - 2 * m, h = w / ratio;
+    if (plakat) { w = Math.min(w, 1200); h = w / ratio; return { left: (vw - w) / 2, top: m, width: w, height: h, radius: 14 }; }
+    if (h > vh - 2 * m) { h = vh - 2 * m; w = h * ratio; }
+    return { left: (vw - w) / 2, top: (vh - h) / 2, width: w, height: h, radius: 14 };
+  }
+  const css = r => ({ left: r.left + "px", top: r.top + "px", width: r.width + "px", height: r.height + "px", borderRadius: r.radius + "px" });
+  function place(el, r) { Object.assign(el.style, css(r)); }
+  function morph(el, from, to, ms, done) {
+    place(el, to);
+    if (calm()) { if (done) done(); return; }
+    const a = el.animate([css(from), css(to)], { duration: ms, easing: "cubic-bezier(.2,.7,.2,1)" });
+    if (done) a.onfinish = done;
+  }
+
+  // Hochauflösende Fassung laden; danach auf deren Seitenverhältnis aufziehen.
+  function loadLarge(z, img) {
+    const want = largeSrc(img.getAttribute("src"));
+    const hi = new Image();
+    hi.onload = () => {
+      if (zoom !== z || z.img !== img) return;
+      z.big.src = want;
+      const from = { ...z.rect }, to = bigRect(hi.naturalWidth / hi.naturalHeight, z.plakat);
+      z.rect = to;
+      if (z.plakat) z.box.style.setProperty("--end", to.top + to.height + "px");
+      morph(z.big, from, to, 300);
+    };
+    hi.src = want;
+  }
+
+  function openZoom(img) {
+    if (zoom) return;
+    clearInterval(slideTimer);
+    const fig = img.closest(".item");
+    const plakat = !!(fig && fig.dataset.plakat);
+    const box = document.createElement("div");
+    box.className = "zoom" + (plakat ? " zoom--plakat" : "");
+    box.setAttribute("role", "dialog");
+    box.setAttribute("aria-label", "Bild vergrößert");
+    const big = new Image();
+    big.src = img.currentSrc || img.src;
+    big.alt = img.alt;
+    box.appendChild(big);
+    document.body.appendChild(box);
+    img.style.visibility = "hidden";
+    const slides = img.closest(".slides");
+    const rect = bigRect(img.naturalWidth / img.naturalHeight, plakat);
+    if (plakat) box.style.setProperty("--end", rect.top + rect.height + "px");
+    zoom = { img, box, big, rect, plakat, slides: slides && slides.querySelectorAll(".slide").length > 1 ? slides : null, y: window.scrollY };
+    if (!calm()) box.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 260, easing: "ease" });
+    morph(big, tileRect(img), rect, 380);
+    loadLarge(zoom, img);
+  }
+
+  function closeZoom() {
+    if (!zoom) return;
+    const { img, box, big } = zoom;
+    zoom = null;
+    const done = () => { box.remove(); img.style.visibility = ""; startSlides(); };
+    if (calm() || !img.isConnected) return done();
+    // Aktuelle Lage (auch bei gescrolltem Plakat) als Startpunkt nehmen.
+    const r = big.getBoundingClientRect();
+    big.style.position = "fixed";
+    const from = { left: r.left, top: r.top, width: r.width, height: r.height, radius: 14 };
+    box.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 320, easing: "ease", fill: "forwards" });
+    big.animate([css(from), css(tileRect(img))], { duration: 320, easing: "cubic-bezier(.4,0,.2,1)", fill: "forwards" }).onfinish = done;
+  }
+
+  // Diashow um einen Schritt weiter (dir = -1 / +1), in der Kachel und im Zoom.
+  function stepSlides(slides, dir) {
+    setSlide(slides, +slides.dataset.i + dir);
+    if (!zoom || zoom.slides !== slides) { startSlides(); return; }
+    const img = shownImg(slides.closest(".tile"));
+    zoom.img.style.visibility = "";
+    img.style.visibility = "hidden";
+    zoom.img = img;
+    zoom.big.src = img.currentSrc || img.src;
+    loadLarge(zoom, img);
+  }
+
+  function onZoomClick(e) {
+    if (zoom) {
+      if (zoom.slides && e.target === zoom.big) {
+        const z = zoneOf(e, zoom.big);
+        if (z) { stepSlides(zoom.slides, z); return true; }
+      }
+      closeZoom();
+      return true;
+    }
+    const tile = e.target.closest(".media .tile");
+    if (!tile) return false;
+    const slides = tile.querySelector(".slides");
+    if (slides && slides.querySelectorAll(".slide").length > 1) {
+      const z = zoneOf(e, tile);
+      if (z) { stepSlides(slides, z); return true; }
+    }
+    const img = shownImg(tile);
+    if (!img || !img.complete || !img.naturalWidth) return false;
+    openZoom(img);
+    return true;
+  }
+
+  // Mauszeiger zeigt, was ein Klick tut: zurück, vor, vergrößern, schließen.
+  function onZoneHover(e) {
+    const el = zoom ? (zoom.slides && e.target === zoom.big ? zoom.big : null) : e.target.closest(".media .tile");
+    document.querySelectorAll("[data-zone]").forEach(x => { if (x !== el) delete x.dataset.zone; });
+    if (!el) return;
+    const multi = zoom ? true : !!(el.querySelector(".slides") && el.querySelectorAll(".slide").length > 1);
+    const z = multi ? zoneOf(e, el) : 0;
+    el.dataset.zone = z < 0 ? "prev" : z > 0 ? "next" : "mid";
+  }
+
   function bindEvents() {
     document.addEventListener("click", e => {
       if (onMediaClick(e)) return;
+      if (onZoomClick(e)) return;
       const btn = e.target.closest(".drop > button[aria-controls]");
       if (btn) {
         const open = btn.getAttribute("aria-expanded") === "true";
@@ -381,9 +516,45 @@
       }
       closeAll();
     });
-    document.addEventListener("keydown", e => { if (e.key === "Escape") closeAll(); });
-    window.addEventListener("scroll", updateStuck, { passive: true });
-    window.addEventListener("resize", updateStuck);
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") { closeZoom(); closeAll(); }
+      if (zoom && zoom.slides && (e.key === "ArrowLeft" || e.key === "ArrowRight")) {
+        e.preventDefault();
+        stepSlides(zoom.slides, e.key === "ArrowLeft" ? -1 : 1);
+      }
+    });
+    document.addEventListener("mousemove", onZoneHover, { passive: true });
+    // Großes Namensfenster: Scrollen (Mausrad, Trackpad, Wischen) schließt es,
+    // dann sind die Arbeiten wieder zu sehen. Ist das Fenster selbst länger als
+    // der Bildschirm, scrollt erst sein Inhalt; am Ende schließt es.
+    const introOpen = () => !!document.querySelector('.drop > button[aria-expanded="true"][aria-controls^="panel-intro"]');
+    const panelScrolls = (el, dy) => {
+      const panel = el.closest && el.closest(".drop > .panel");
+      if (!panel || panel.scrollHeight <= panel.clientHeight + 1) return false;
+      return dy < 0 ? panel.scrollTop > 0 : panel.scrollTop + panel.clientHeight < panel.scrollHeight - 1;
+    };
+    window.addEventListener("wheel", e => {
+      if (!introOpen() || Math.abs(e.deltaY) < 4) return;
+      if (!panelScrolls(e.target, e.deltaY)) closeAll();
+    }, { passive: true });
+    let touchY = null;
+    window.addEventListener("touchstart", e => { touchY = e.touches[0].clientY; }, { passive: true });
+    window.addEventListener("touchmove", e => {
+      if (!introOpen() || touchY === null) return;
+      const dy = touchY - e.touches[0].clientY;
+      if (Math.abs(dy) > 24 && !panelScrolls(e.target, dy)) { closeAll(); touchY = null; }
+    }, { passive: true });
+    // Erst bei deutlichem Weiterscrollen schließen, nicht bei kleinen Layout-Sprüngen.
+    let introY = null;
+    window.addEventListener("scroll", () => {
+      updateStuck();
+      if (zoom && Math.abs(window.scrollY - zoom.y) > 80) closeZoom();
+      if (!introOpen()) { introY = null; return; }
+      if (introY === null) introY = window.scrollY;
+      else if (Math.abs(window.scrollY - introY) > 40) closeAll();
+    }, { passive: true });
+    window.addEventListener("resize", () => { updateStuck(); closeZoom(); });
+    window.addEventListener("hashchange", closeZoom);
   }
 
   /* ---------- Start ---------- */

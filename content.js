@@ -16,6 +16,12 @@
      { src: "bilder/x/film.mp4", wide: true }      → Video mit Pause, Vollbild, Ton
      { src: "bilder/x/02.jpg", caption: "Modell 1:20" } → Bildunterschrift darunter
      { slides: ["bilder/x/03.jpg", "bilder/x/04.jpg"], wide: true } → Diashow mit Punkten
+         (Klick links/rechts im Bild blättert, Klick in die Mitte vergrößert)
+     { src: "bilder/x/plakat.jpg", plakat: true }   → beim Vergrößern in voller Breite, scrollbar
+
+   Vergrößern per Klick: Liegt im Unterordner "gross/" eine Datei mit
+   gleichem Namen (z. B. bilder/x/gross/01.jpg), wird diese hochauflösende
+   Fassung gezeigt. Sonst das normale Bild.
    cover: "bilder/x/titel.jpg"  → eigenes Titelbild für die Startseite (optional)
    credits: [["Rolle", "Name"], ...] → Credits auf der Projektseite
    ===================================================================== */
@@ -51,7 +57,7 @@ window.INTRO = {
 window.ABOUT = [
   {
     title: "Information",
-    text: "Ich bin Kilian Ritter und entwerfe Räume und die Dinge, die in ihnen stehen. Mich interessiert, wie ein Objekt im Alltag benutzt wird, wie ein Raum sich anfühlt und welches Material beides trägt."
+    text: "Ich bin Kilian Ritter und studiere Innenarchitektur an der TH Rosenheim. Mich interessiert, wie ein Raum sich anfühlt, wie ein Objekt im Alltag benutzt wird und welches Material beides trägt."
   },
   {
     title: "Schwerpunkte",
@@ -138,8 +144,145 @@ window.PRIVACY = {
 };
 
 /* Projekte: Reihenfolge = Reihenfolge auf der Startseite.
-   slug = Adresse der Projektseite (nur a–z, 0–9 und -). */
+   slug = Adresse der Projektseite (nur a–z, 0–9 und -).
+   Die Bilder liegen in bilder/<slug>/ und sind schon passend zugeschnitten:
+   normale Bilder 4:5, breite Bilder (wide) 8:5. */
+const TEAM = "Kilian Ritter, Pascal Ristl";
+
 window.PROJECTS = [
+  {
+    slug: "axxi-raumexperiment",
+    title: "AXXI – Raumexperiment",
+    context: "Entwurf Raum 1",
+    category: "Innenraum, Entwurf",
+    year: "2025/26",
+    text: [
+      "AXXI untersucht kreatives Arbeiten als räumlichen Prozess zwischen Austausch, Rückzug und Bewegung. Entlang eines zentralen Durchgangs reihen sich offene und konzentrierte Arbeitsformen: Büro, Café, Meetingpoint und Thinktank.",
+      "Ausgangspunkt war das Gemälde „A XXI“ von László Moholy-Nagy. Aus der Analyse seiner Diagonalen, Winkel, Kreise und Farbtemperaturen entstand erst ein Relief und daraus der Raum. Form follows feeling."
+    ],
+    credits: [["Betreuung", "Prof. Dipl.-Ing. Bernd Meinlschmidt"], ["Team", TEAM]],
+    cover: "bilder/axxi-raumexperiment/titel.jpg",
+    images: [
+      { src: "bilder/axxi-raumexperiment/01.jpg", wide: true, caption: "Weißmodell" },
+      { src: "bilder/axxi-raumexperiment/02.jpg", caption: "László Moholy-Nagy, A XXI, 1925" },
+      { src: "bilder/axxi-raumexperiment/03.jpg", caption: "Relief nach dem Original" },
+      { src: "bilder/axxi-raumexperiment/06.jpg", caption: "Plakat", plakat: true },
+      { src: "bilder/axxi-raumexperiment/05.jpg", caption: "Finales Modell, M 1:100" },
+      { src: "bilder/axxi-raumexperiment/07.jpg", wide: true, caption: "Weißmodell, Draufsicht" },
+      { src: "bilder/axxi-raumexperiment/grundriss-eg.jpg", wide: true, caption: "Grundriss EG, M 1:100" },
+      { src: "bilder/axxi-raumexperiment/grundriss-og.jpg", wide: true, caption: "Grundriss OG, M 1:100" },
+      { src: "bilder/axxi-raumexperiment/08.jpg", wide: true, caption: "Schnitt A-A, M 1:100" },
+      { src: "bilder/axxi-raumexperiment/09.jpg", wide: true, caption: "Überblick aus dem Bürobereich" },
+      { src: "bilder/axxi-raumexperiment/10.jpg", wide: true, caption: "Kontext: Einbauten im Bestand" },
+      { slides: ["bilder/axxi-raumexperiment/11.jpg", "bilder/axxi-raumexperiment/12.jpg"], wide: true, caption: "Renderings: Café-Bereich, Treppenaufgang" },
+      { src: "bilder/axxi-raumexperiment/lichtstimmung.jpg", wide: true, caption: "Lichtsimulation verschiedener Sonnenstände" }
+    ]
+  },
+  {
+    slug: "naturblock",
+    title: "Naturblock",
+    context: "Modellbau",
+    category: "Architektur, Modell 1:100",
+    year: "2025/26",
+    text: [
+      "Ein brutalistischer Monolith, bewusst als Fremdkörper in die Landschaft gesetzt und doch mit dem Hang verzahnt. Der Sockel liegt im Gelände, der obere Baukörper kragt weit aus und öffnet sich mit raumhohen Verglasungen zum Panorama.",
+      "Das Modell ist aus Finnpappe gebaut, die im Maßstab 1:100 wie Sichtbeton wirkt. Das Gelände ist ein Schichtmodell, die Verglasung aus Vivak, die Bäume sind getrocknete Disteln. Farbe setzen nur Figuren, Auto und Pool."
+    ],
+    credits: [["Betreuung", "Prof. Dipl.-Ing. Jonas Kessler"], ["Team", TEAM]],
+    cover: "bilder/naturblock/02.jpg",
+    images: [
+      { src: "bilder/naturblock/01.jpg", wide: true },
+      "bilder/naturblock/02.jpg",
+      "bilder/naturblock/03.jpg",
+      { src: "bilder/naturblock/04.jpg", wide: true },
+      { src: "bilder/naturblock/05.jpg", caption: "Geländeplan, Schichtmodell M 1:100" },
+      "bilder/naturblock/06.jpg"
+    ]
+  },
+  {
+    slug: "freilieger",
+    title: "Der Freilieger",
+    context: "Design 1",
+    category: "Möbeldesign, Objekt",
+    year: "2025/26",
+    text: [
+      "Eine Transformation des Thonet-Freischwingers S32. Das Prinzip des Freischwingens wird isoliert und das Gestell selbst zur Liege: ein monolithischer Körper aus einem Material, der die typischen Radien des Klassikers aufnimmt.",
+      "Gedacht ist der Freilieger aus Bio-Composite aus Hanf- und Flachsfasern. Er ist leicht, dämpft Schwingungen und eignet sich für draußen. Das Modell entstand aus angeritztem Karton, gebogenen Aluminiumstäben und kaschiertem Papier."
+    ],
+    credits: [["Betreuung", "Dipl. Des. Simone Raus"], ["Team", "Kilian Ritter, Pascal Ristl, Clemens Sammer, Julius Polonius"]],
+    cover: "bilder/freilieger/08.jpg",
+    images: [
+      { src: "bilder/freilieger/01.jpg", wide: true, caption: "Konzeptvisualisierung" },
+      { src: "bilder/freilieger/02.jpg", wide: true, caption: "Dreitafelprojektion und Isometrie" },
+      "bilder/freilieger/03.jpg",
+      "bilder/freilieger/04.jpg",
+      "bilder/freilieger/05.jpg",
+      "bilder/freilieger/06.jpg",
+      { src: "bilder/freilieger/07.jpg", wide: true, caption: "Seitenansicht" },
+      { src: "bilder/freilieger/08.jpg", caption: "Vorderansicht" },
+      { src: "bilder/freilieger/09.jpg", caption: "Kantenausbildung" },
+      { src: "bilder/freilieger/10.jpg", wide: true, caption: "Rendering mit Bio-Composite" },
+      { src: "bilder/freilieger/11.jpg", wide: true, caption: "Rendering Außenbereich" },
+      { src: "bilder/freilieger/12.jpg", caption: "Rendering Innenraum" },
+      { src: "bilder/freilieger/13.jpg", caption: "Plakat", plakat: true }
+    ]
+  },
+  {
+    slug: "bio-strukturen",
+    title: "Bio-Strukturen",
+    context: "Baukonstruktion 1",
+    category: "Strukturstudie, Modell",
+    year: "2025/26",
+    text: [
+      "Wie baut die Natur? Am Beispiel einer Artischocke: sehen, messen, verstehen, umsetzen, anwenden. Zeichnungen der Frucht im Ganzen und im Schnitt führen zu einem Raster ihrer Schuppen.",
+      "Daraus entstand ein Steckmodell. Lamellen greifen in eine radial geschlitzte Basisscheibe und bauen die Form Schicht für Schicht wieder auf."
+    ],
+    credits: [["Betreuung", "Prof. Ulrike Förschler"], ["Team", TEAM]],
+    cover: "bilder/bio-strukturen/11.jpg",
+    images: [
+      "bilder/bio-strukturen/01.jpg",
+      { src: "bilder/bio-strukturen/02.jpg", caption: "Sehen" },
+      "bilder/bio-strukturen/03.jpg",
+      { src: "bilder/bio-strukturen/04.jpg", caption: "Sehen, Schnitt" },
+      { src: "bilder/bio-strukturen/05.jpg", caption: "Messen" },
+      { src: "bilder/bio-strukturen/06.jpg", caption: "Messen, Aufsicht" },
+      { src: "bilder/bio-strukturen/07.jpg", wide: true, caption: "Umsetzen" },
+      { src: "bilder/bio-strukturen/08.jpg", caption: "Basisscheibe" },
+      "bilder/bio-strukturen/09.jpg",
+      "bilder/bio-strukturen/10.jpg",
+      { src: "bilder/bio-strukturen/11.jpg", caption: "Anwenden" }
+    ]
+  },
+  {
+    slug: "treppenschau",
+    title: "Treppenschau",
+    context: "Baukonstruktion 1",
+    category: "Bauaufnahme, Zeichnung",
+    year: "2025/26",
+    text: [
+      "Bauaufnahme einer viertelgewendelten Massivtreppe im T-Gebäude der TH Rosenheim, zwischen erstem und zweitem Obergeschoss: Terrazzostufen, ein anthrazitfarbenes Podest, ein schwarzer Handlauf.",
+      "Vom Schwarzplan über Freihandskizzen und Aufmaß bis zu Grundriss, Schnitten und Wandabwicklungen im Maßstab 1:20, alle von Hand gezeichnet."
+    ],
+    credits: [["Betreuung", "Prof. Ulrike Förschler"], ["Team", TEAM]],
+    cover: "bilder/treppenschau/02.jpg",
+    images: [
+      { src: "bilder/treppenschau/01.jpg", wide: true, caption: "T-Gebäude, TH Rosenheim" },
+      "bilder/treppenschau/02.jpg",
+      "bilder/treppenschau/03.jpg",
+      "bilder/treppenschau/04.jpg",
+      "bilder/treppenschau/05.jpg",
+      { src: "bilder/treppenschau/06.jpg", wide: true, caption: "Schwarzplan, M 1:2000" },
+      { src: "bilder/treppenschau/07.jpg", caption: "Aufmaß, Freihandskizze" },
+      { src: "bilder/treppenschau/08.jpg", caption: "Aufmaß, Freihandskizze" },
+      { src: "bilder/treppenschau/09.jpg", wide: true, caption: "Grundriss, M 1:20" },
+      { src: "bilder/treppenschau/10.jpg", wide: true, caption: "Schnitt B-B, M 1:20" }
+    ]
+  }
+];
+
+/* Frühere Entwürfe von Projekten, die (noch) nicht auf der Website erscheinen.
+   Zum Anzeigen einen Block nach oben in PROJECTS verschieben. */
+window.PROJECTS_SPAETER = [
   {
     slug: "waeschetrockner",
     title: "Rollbarer Wäschetrockner",
