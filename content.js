@@ -169,12 +169,14 @@ window.PROJECTS = [
       { src: "bilder/axxi-raumexperiment/06.jpg", caption: "Plakat", plakat: true },
       { src: "bilder/axxi-raumexperiment/05.jpg", caption: "Finales Modell, M 1:100" },
       { src: "bilder/axxi-raumexperiment/07.jpg", wide: true, caption: "Weißmodell, Draufsicht" },
+      { src: "bilder/axxi-raumexperiment/zonen.jpg", wide: true, caption: "Nutzung: Büro, Café, Meetingpoint, Thinktank, Durchgang, kreatives Arbeiten" },
       { src: "bilder/axxi-raumexperiment/grundriss-eg.jpg", wide: true, caption: "Grundriss EG, M 1:100" },
       { src: "bilder/axxi-raumexperiment/grundriss-og.jpg", wide: true, caption: "Grundriss OG, M 1:100" },
       { src: "bilder/axxi-raumexperiment/08.jpg", wide: true, caption: "Schnitt A-A, M 1:100" },
       { src: "bilder/axxi-raumexperiment/09.jpg", wide: true, caption: "Überblick aus dem Bürobereich" },
       { src: "bilder/axxi-raumexperiment/10.jpg", wide: true, caption: "Kontext: Einbauten im Bestand" },
-      { slides: ["bilder/axxi-raumexperiment/11.jpg", "bilder/axxi-raumexperiment/12.jpg"], wide: true, caption: "Renderings: Café-Bereich, Treppenaufgang" },
+      { src: "bilder/axxi-raumexperiment/cafe.jpg", wide: true, caption: "Rendering: Blickbeziehung in den Café-Bereich" },
+      { src: "bilder/axxi-raumexperiment/sonnenverlauf.jpg", wide: true, caption: "Sonnenverlauf" },
       { src: "bilder/axxi-raumexperiment/lichtstimmung.jpg", wide: true, caption: "Lichtsimulation verschiedener Sonnenstände" }
     ]
   },
