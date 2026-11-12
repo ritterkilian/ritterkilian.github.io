@@ -165,6 +165,7 @@ window.PROJECTS = [
     cover: "bilder/axxi-raumexperiment/titel.jpg",
     images: [
       { src: "bilder/axxi-raumexperiment/01.jpg", wide: true, caption: "Weißmodell" },
+      { src: "bilder/axxi-raumexperiment/axxi-360.mp4", wide: true, caption: "360°-Ansicht, Weißmodell" },
       { src: "bilder/axxi-raumexperiment/02.jpg", caption: "László Moholy-Nagy, A XXI, 1925" },
       { src: "bilder/axxi-raumexperiment/03.jpg", caption: "Relief nach dem Original" },
       { src: "bilder/axxi-raumexperiment/06.jpg", caption: "Plakat", plakat: true },
