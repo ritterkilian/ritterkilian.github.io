@@ -32,7 +32,6 @@
         <div class="vctl" aria-label="Videosteuerung">
           <button type="button" data-v="play" aria-label="Pause">${ICON.pause}</button>
           <button type="button" data-v="full" aria-label="Vollbild">${ICON.full}</button>
-          <button type="button" data-v="mute" aria-label="Ton an">${ICON.muted}</button>
         </div>`;
     }
     return `${ph}<img src="${esc(src)}" alt="${esc(alt)}" ${lazy ? 'loading="lazy"' : ""} decoding="async" class="loading" onload="this.classList.remove('loading')" onerror="this.remove()">`;
@@ -277,8 +276,6 @@
         ${items(p).map((it, i) => mediaItem(p, it, i, pi)).join("")}
       </div>
     </div>
-    <!-- Nach den letzten Bildern weiterscrollen führt zurück zur Übersicht -->
-    <div class="project-end" aria-hidden="true"></div>
     ${footer()}`;
   }
 
@@ -321,8 +318,8 @@
       b.innerHTML = v.muted ? ICON.muted : ICON.sound;
       b.setAttribute("aria-label", v.muted ? "Ton an" : "Ton aus");
     } else if (b.dataset.v === "full") {
-      const el = v.closest(".tile");
-      (el.requestFullscreen || el.webkitRequestFullscreen || (() => v.webkitEnterFullscreen && v.webkitEnterFullscreen())).call(el);
+      // Vollbild: Video wächst wie die Bilder auf Bildschirmgröße, Scrollen/Klick/Esc macht es wieder klein
+      openZoom(v);
     }
     return true;
   }
@@ -418,15 +415,27 @@
     const box = document.createElement("div");
     box.className = "zoom" + (plakat ? " zoom--plakat" : "");
     box.setAttribute("role", "dialog");
-    box.setAttribute("aria-label", "Bild vergrößert");
-    const big = new Image();
-    big.src = img.currentSrc || img.src;
-    big.alt = img.alt;
+    // Videos (z. B. 360°-Ansicht) werden genauso vergrößert wie Bilder.
+    const isVideo = img.tagName === "VIDEO";
+    box.setAttribute("aria-label", isVideo ? "Video vergrößert" : "Bild vergrößert");
+    let big;
+    if (isVideo) {
+      big = document.createElement("video");
+      Object.assign(big, { src: img.currentSrc || img.src, muted: true, loop: true, playsInline: true, autoplay: true });
+      big.setAttribute("playsinline", "");
+      big.currentTime = img.currentTime;
+      big.play().catch(() => {});
+    } else {
+      big = new Image();
+      big.src = img.currentSrc || img.src;
+      big.alt = img.alt;
+    }
     box.appendChild(big);
     document.body.appendChild(box);
     img.style.visibility = "hidden";
     const slides = img.closest(".slides");
-    const rect = bigRect(img.naturalWidth / img.naturalHeight, plakat);
+    const ratio = isVideo ? (img.videoWidth / img.videoHeight || 1.6) : img.naturalWidth / img.naturalHeight;
+    const rect = bigRect(ratio, plakat);
     if (plakat) {
       box.style.setProperty("--end", rect.top + rect.height + "px");
       // Plakat: Am Ende (oder ganz oben) weiterscrollen schließt das Plakat,
@@ -449,7 +458,7 @@
     zoom = { img, box, big, rect, plakat, slides: slides && slides.querySelectorAll(".slide").length > 1 ? slides : null, y: window.scrollY };
     if (!calm()) box.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 260, easing: "ease" });
     morph(big, tileRect(img), rect, 380);
-    loadLarge(zoom, img);
+    if (!isVideo) loadLarge(zoom, img);
   }
 
   function closeZoom() {
@@ -494,6 +503,8 @@
       const z = zoneOf(e, tile);
       if (z) { stepSlides(slides, z); return true; }
     }
+    const vid = tile.querySelector(":scope > video");
+    if (vid) { if (vid.readyState >= 1) openZoom(vid); return true; }
     const img = shownImg(tile);
     if (!img || !img.complete || !img.naturalWidth) return false;
     openZoom(img);
@@ -563,6 +574,21 @@
       if (!panel || panel.scrollHeight <= panel.clientHeight + 1) return false;
       return dy < 0 ? panel.scrollTop > 0 : panel.scrollTop + panel.clientHeight < panel.scrollHeight - 1;
     };
+    // Vergrößertes Bild/Video: jede Scrollbewegung (Mausrad, Trackpad, Wischen) macht es
+    // wieder klein, auch ganz unten auf der Seite, wo die Seite selbst nicht mehr scrollt.
+    let zoomPush = 0, zoomOf = null;
+    window.addEventListener("wheel", e => {
+      if (!zoom || zoom.plakat) return;
+      if (zoomOf !== zoom) { zoomOf = zoom; zoomPush = 0; }
+      zoomPush += Math.abs(e.deltaY) + Math.abs(e.deltaX);
+      if (zoomPush > 60) closeZoom();
+    }, { passive: true });
+    let zoomTouchY = null;
+    window.addEventListener("touchstart", e => { zoomTouchY = e.touches[0].clientY; }, { passive: true });
+    window.addEventListener("touchmove", e => {
+      if (!zoom || zoom.plakat || zoomTouchY === null) return;
+      if (Math.abs(zoomTouchY - e.touches[0].clientY) > 40) { zoomTouchY = null; closeZoom(); }
+    }, { passive: true });
     window.addEventListener("wheel", e => {
       if (!introOpen() || Math.abs(e.deltaY) < 4) return;
       if (!panelScrolls(e.target, e.deltaY)) closeAll();
@@ -579,12 +605,6 @@
     window.addEventListener("scroll", () => {
       updateStuck();
       if (zoom && Math.abs(window.scrollY - zoom.y) > 80) closeZoom();
-      // Projektseite: Ist man über die letzten Bilder hinausgescrollt, geht es zur Übersicht.
-      const end = !zoom && document.querySelector(".project-end");
-      if (end && window.scrollY > 150 && end.getBoundingClientRect().top < window.innerHeight * 0.3) {
-        location.hash = "";
-        return;
-      }
       if (!introOpen()) { introY = null; return; }
       if (introY === null) introY = window.scrollY;
       else if (Math.abs(window.scrollY - introY) > 40) closeAll();

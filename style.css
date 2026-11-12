@@ -249,8 +249,15 @@ a.tile:hover .hover, a.tile:focus-visible .hover { opacity: 1; transform: transl
   grid-column: 1;
   background: var(--fill);
   display: grid;
+  align-content: start;
   gap: 26px;
   padding: 20px 16px 30px;
+  /* Lange Beschreibungen scrollen im Fenster, damit Titel und „Zurück zur Übersicht“
+     beim Scrollen der Seite immer oben stehen bleiben */
+  max-height: calc(100vh - var(--top) - var(--edge) - 30px - var(--gap));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
 }
 .info-card section { display: grid; gap: 10px; }
 .label.rule { padding-bottom: 6px; border-bottom: 1px solid var(--rule); }
@@ -269,7 +276,8 @@ a.tile:hover .hover, a.tile:focus-visible .hover { opacity: 1; transform: transl
 .item.wide { grid-column: 1 / -1; }
 .item.wide .tile { aspect-ratio: 8 / 5; }
 .item figcaption { text-align: center; color: var(--ink); }
-.media .tile:has(> img), .media .tile:has(.slides img) { cursor: zoom-in; }
+.media .tile:has(> img), .media .tile:has(.slides img), .media .tile:has(> video) { cursor: zoom-in; }
+.media .tile .vctl { cursor: default; }
 
 /* Vergrößertes Bild (Klick auf ein Projektbild, erneuter Klick schließt) */
 .zoom {
@@ -278,7 +286,7 @@ a.tile:hover .hover, a.tile:focus-visible .hover { opacity: 1; transform: transl
   -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
   cursor: zoom-out;
 }
-.zoom img { position: absolute; display: block; max-width: none; object-fit: cover; }
+.zoom img, .zoom video { position: absolute; display: block; max-width: none; object-fit: cover; }
 /* Plakat: volle Breite, im Fenster scrollbar */
 .zoom--plakat { overflow-y: auto; overscroll-behavior: contain; }
 .zoom--plakat::after { content: ""; position: absolute; left: 0; top: var(--end, 0); width: 1px; height: 32px; }
@@ -323,8 +331,6 @@ a.tile:hover .hover, a.tile:focus-visible .hover { opacity: 1; transform: transl
 .slides ~ .dots ~ .vctl, .slides .vctl { display: none; }
 
 /* ---------- Footer ---------- */
-/* Projektseite: Raum nach den letzten Bildern, Weiterscrollen führt zur Übersicht */
-.project-end { height: 75vh; }
 .site-footer { margin-top: auto; padding-top: 30px; }
 /* Pfeile im Footer: alle gleich (gefülltes Dreieck), erst beim Hovern sichtbar */
 .arr {
@@ -409,7 +415,7 @@ a.tile:hover .hover, a.tile:focus-visible .hover { opacity: 1; transform: transl
   body.side-stuck .drop--name { opacity: 1; pointer-events: auto; }
   .drop--name { grid-column: 1 / -1; }
   .panel--intro .statement { font-size: 17px; line-height: 21px; }
-  .info-card { grid-column: 1 / -1; }
+  .info-card { grid-column: 1 / -1; max-height: none; overflow: visible; }
   .media { grid-column: 1 / -1; }
 
   .site-footer > * { grid-column: 1 / -1; }
