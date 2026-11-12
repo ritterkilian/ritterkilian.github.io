@@ -137,7 +137,7 @@
               <div class="label">Kontakt</div>
               <ul>
                 <li><a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a></li>
-                <li><a href="${esc(SITE.instagram && SITE.instagram.url)}" target="_blank" rel="noopener">${esc(SITE.instagram && SITE.instagram.handle)}</a></li>
+                <li><a href="${esc(SITE.instagram && SITE.instagram.url)}" target="_blank" rel="noopener">Instagram | ${esc(SITE.instagram && SITE.instagram.handle)}</a></li>
               </ul>
             </section>
             <section>
@@ -218,7 +218,7 @@
             <div class="label">Kontakt</div>
             <ul>
               <li><a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a></li>
-              <li><a href="${esc(SITE.instagram && SITE.instagram.url)}" target="_blank" rel="noopener">${esc(SITE.instagram && SITE.instagram.handle)}</a></li>
+              <li><a href="${esc(SITE.instagram && SITE.instagram.url)}" target="_blank" rel="noopener">Instagram | ${esc(SITE.instagram && SITE.instagram.handle)}</a></li>
             </ul>
           </section>
         </div>

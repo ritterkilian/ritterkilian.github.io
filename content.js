@@ -57,7 +57,7 @@ window.INTRO = {
 window.ABOUT = [
   {
     title: "Information",
-    text: "Ich bin Kilian Ritter und studiere Innenarchitektur an der TH Rosenheim. Mich interessiert, wie ein Raum sich anfühlt, wie ein Objekt im Alltag benutzt wird und welches Material beides trägt."
+    text: "Ich bin Kilian Ritter und studiere Innenarchitektur an der Technischen Hochschule Rosenheim. Mich interessiert, wie ein Raum sich anfühlt, wie ein Objekt im Alltag benutzt wird und welches Material beides trägt."
   },
   {
     title: "Schwerpunkte",
@@ -264,22 +264,26 @@ window.PROJECTS = [
     category: "Bauaufnahme, Zeichnung",
     year: "2025/26",
     text: [
-      "Bauaufnahme einer viertelgewendelten Massivtreppe im T-Gebäude der TH Rosenheim, zwischen erstem und zweitem Obergeschoss: Terrazzostufen, ein anthrazitfarbenes Podest, ein schwarzer Handlauf.",
-      "Vom Schwarzplan über Freihandskizzen und Aufmaß bis zu Grundriss, Schnitten und Wandabwicklungen im Maßstab 1:20, alle von Hand gezeichnet."
+      "Bauaufnahme einer viertelgewendelten Massivtreppe im T-Gebäude der Technischen Hochschule Rosenheim, zwischen erstem und zweitem Obergeschoss: Terrazzostufen, ein anthrazitfarbenes Podest, ein schwarzer Handlauf.",
+      "Vom Schwarzplan über Freihandskizzen und Aufmaß bis zu Grundriss, Schnitten und Wandabwicklungen, alle von Hand gezeichnet."
     ],
     credits: [["Betreuung", "Prof. Ulrike Förschler"], ["Team", TEAM]],
-    cover: "bilder/treppenschau/02.jpg",
+    cover: "bilder/treppenschau/titel.jpg",
     images: [
-      { src: "bilder/treppenschau/01.jpg", wide: true, caption: "T-Gebäude, TH Rosenheim" },
-      "bilder/treppenschau/02.jpg",
-      "bilder/treppenschau/03.jpg",
-      "bilder/treppenschau/04.jpg",
-      "bilder/treppenschau/05.jpg",
-      { src: "bilder/treppenschau/06.jpg", wide: true, caption: "Schwarzplan | M 1:2000" },
-      { src: "bilder/treppenschau/07.jpg", caption: "Aufmaß, Freihandskizze" },
-      { src: "bilder/treppenschau/08.jpg", caption: "Aufmaß, Freihandskizze" },
-      { src: "bilder/treppenschau/09.jpg", wide: true, caption: "Grundriss | M 1:20" },
-      { src: "bilder/treppenschau/10.jpg", wide: true, caption: "Schnitt B-B | M 1:20" }
+      /* Booklet-Folien 6–16 */
+      { src: "bilder/treppenschau/p06.jpg", wide: true, caption: "Schwarzplan | M 1:2000" },
+      { src: "bilder/treppenschau/p07.jpg", wide: true, caption: "Lageplan | M 1:500" },
+      { src: "bilder/treppenschau/p08.jpg", wide: true, caption: "Skizze Nordansicht" },
+      { src: "bilder/treppenschau/p09.jpg", wide: true, caption: "Skizze Ostansicht" },
+      { src: "bilder/treppenschau/p10.jpg", wide: true, caption: "Nordansicht mit Verortung der Treppe" },
+      { src: "bilder/treppenschau/p11.jpg", wide: true, caption: "Ostansicht mit Verortung der Treppe" },
+      { src: "bilder/treppenschau/p12a.jpg", caption: "Aufmaß, Skizze freihand" },
+      { src: "bilder/treppenschau/p12b.jpg", caption: "Aufmaß, Skizze freihand" },
+      { src: "bilder/treppenschau/p13a.jpg", caption: "Aufmaß, Skizze freihand" },
+      { src: "bilder/treppenschau/p13b.jpg", caption: "Aufmaß, Skizze freihand" },
+      { src: "bilder/treppenschau/p14.jpg", wide: true, caption: "Grundriss | M 1:20" },
+      { src: "bilder/treppenschau/p15.jpg", wide: true, caption: "Schnitt A-A | M 1:20" },
+      { src: "bilder/treppenschau/p16.jpg", wide: true, caption: "Schnitt B-B | M 1:20" }
     ]
   }
 ];
