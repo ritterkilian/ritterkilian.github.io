@@ -243,6 +243,7 @@ window.PROJECTS = [
     cover: "bilder/bio-strukturen/01.jpg",
     images: [
       { src: "bilder/bio-strukturen/01-breit.jpg", wide: true },
+      { src: "bilder/bio-strukturen/artischocke-360.mp4", wide: true, caption: "360°-Ansicht, Weißmodell" },
       { src: "bilder/bio-strukturen/02.jpg", caption: "Sehen" },
       { src: "bilder/bio-strukturen/03.jpg", caption: "Sehen" },
       { src: "bilder/bio-strukturen/04.jpg", caption: "Sehen, Schnitt" },
