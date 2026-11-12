@@ -94,6 +94,9 @@ a.pill.glass:hover, button.pill.glass:hover { background: rgba(225, 225, 225, .6
 .site-header > * { pointer-events: auto; }
 .drop--name { grid-column: span 2; }
 .pill--name .name-right { display: flex; align-items: center; gap: 10px; min-width: 0; }
+/* Name führt zur Übersicht, Tagline/Pfeil öffnen das große Fenster */
+.pill--name .home-link { cursor: pointer; }
+.pill--name .home-link:hover { text-decoration: underline; text-underline-offset: 2px; }
 .pill--name .tagline { text-align: right; overflow: hidden; text-overflow: ellipsis; }
 /* Projektseite beim Scrollen: Titel und „Zurück“ übernehmen den Platz */
 body.side-stuck .drop--name { opacity: 0; pointer-events: none; transition: opacity .25s ease; }
@@ -320,6 +323,8 @@ a.tile:hover .hover, a.tile:focus-visible .hover { opacity: 1; transform: transl
 .slides ~ .dots ~ .vctl, .slides .vctl { display: none; }
 
 /* ---------- Footer ---------- */
+/* Projektseite: Raum nach den letzten Bildern, Weiterscrollen führt zur Übersicht */
+.project-end { height: 75vh; }
 .site-footer { margin-top: auto; padding-top: 30px; }
 /* Pfeile im Footer: alle gleich (gefülltes Dreieck), erst beim Hovern sichtbar */
 .arr {

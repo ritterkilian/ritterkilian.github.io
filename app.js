@@ -187,7 +187,7 @@
     $("#header").innerHTML = `
       <div class="drop drop--name">
         <button class="pill glass pill--name" id="btn-intro" aria-expanded="false" aria-controls="panel-intro">
-          <span class="caps">${esc(SITE.name)}</span>
+          <span class="caps home-link" data-home role="link" aria-label="Zur Übersicht">${esc(SITE.name)}</span>
           <span class="name-right"><span class="tagline">${esc(SITE.tagline)}</span><span class="arr arr--down" aria-hidden="true"></span></span>
         </button>
         ${introPanel("panel-intro")}
@@ -242,7 +242,8 @@
   // Key/Value-Liste für die Info-Karte
   function kv(rows) {
     return `<dl class="kv">${rows.filter(r => r && r[1]).map(([k, v]) =>
-      `<dt>${esc(k)}:</dt><dd>${esc(v)}</dd>`).join("")}</dl>`;
+      // Liste (z. B. Team): ein Name pro Zeile
+      `<dt>${esc(k)}:</dt><dd>${Array.isArray(v) ? v.map(esc).join("<br>") : esc(v)}</dd>`).join("")}</dl>`;
   }
 
   function project(p) {
@@ -264,7 +265,7 @@
           </section>
           ${text.length ? `<section>
             <div class="label rule">Beschreibung</div>
-            ${text.map(t => `<p>${esc(t)}</p>`).join("")}
+            ${text.map(t => `<p>${esc(t).replace(/\n/g, "<br>")}</p>`).join("")}
           </section>` : ""}
           ${credits.length ? `<section>
             <div class="label rule">Credits</div>
@@ -276,6 +277,8 @@
         ${items(p).map((it, i) => mediaItem(p, it, i, pi)).join("")}
       </div>
     </div>
+    <!-- Nach den letzten Bildern weiterscrollen führt zurück zur Übersicht -->
+    <div class="project-end" aria-hidden="true"></div>
     ${footer()}`;
   }
 
@@ -424,7 +427,25 @@
     img.style.visibility = "hidden";
     const slides = img.closest(".slides");
     const rect = bigRect(img.naturalWidth / img.naturalHeight, plakat);
-    if (plakat) box.style.setProperty("--end", rect.top + rect.height + "px");
+    if (plakat) {
+      box.style.setProperty("--end", rect.top + rect.height + "px");
+      // Plakat: Am Ende (oder ganz oben) weiterscrollen schließt das Plakat,
+      // man ist wieder bei den Bildern, wie bei den anderen vergrößerten Bildern.
+      let push = 0, touchY = null;
+      const atEdge = dy => dy > 0
+        ? box.scrollTop + box.clientHeight >= box.scrollHeight - 2
+        : box.scrollTop <= 0;
+      box.addEventListener("wheel", e => {
+        if (atEdge(e.deltaY)) { push += Math.abs(e.deltaY); if (push > 120) closeZoom(); }
+        else push = 0;
+      }, { passive: true });
+      box.addEventListener("touchstart", e => { touchY = e.touches[0].clientY; }, { passive: true });
+      box.addEventListener("touchmove", e => {
+        if (touchY === null) return;
+        const dy = touchY - e.touches[0].clientY;
+        if (Math.abs(dy) > 60 && atEdge(dy)) { touchY = null; closeZoom(); }
+      }, { passive: true });
+    }
     zoom = { img, box, big, rect, plakat, slides: slides && slides.querySelectorAll(".slide").length > 1 ? slides : null, y: window.scrollY };
     if (!calm()) box.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 260, easing: "ease" });
     morph(big, tileRect(img), rect, 380);
@@ -493,6 +514,15 @@
     document.addEventListener("click", e => {
       if (onMediaClick(e)) return;
       if (onZoomClick(e)) return;
+      // Klick auf den Namen oben links: zurück zur Übersicht.
+      // Tagline und Pfeil daneben öffnen weiterhin das große Fenster.
+      if (e.target.closest("[data-home]")) {
+        e.preventDefault();
+        closeAll();
+        if (location.hash && location.hash !== "#") location.hash = "";
+        else window.scrollTo({ top: 0, behavior: calm() ? "auto" : "smooth" });
+        return;
+      }
       const btn = e.target.closest(".drop > button[aria-controls]");
       if (btn) {
         const open = btn.getAttribute("aria-expanded") === "true";
@@ -549,6 +579,12 @@
     window.addEventListener("scroll", () => {
       updateStuck();
       if (zoom && Math.abs(window.scrollY - zoom.y) > 80) closeZoom();
+      // Projektseite: Ist man über die letzten Bilder hinausgescrollt, geht es zur Übersicht.
+      const end = !zoom && document.querySelector(".project-end");
+      if (end && window.scrollY > 150 && end.getBoundingClientRect().top < window.innerHeight * 0.3) {
+        location.hash = "";
+        return;
+      }
       if (!introOpen()) { introY = null; return; }
       if (introY === null) introY = window.scrollY;
       else if (Math.abs(window.scrollY - introY) > 40) closeAll();

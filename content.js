@@ -147,7 +147,8 @@ window.PRIVACY = {
    slug = Adresse der Projektseite (nur a–z, 0–9 und -).
    Die Bilder liegen in bilder/<slug>/ und sind schon passend zugeschnitten:
    normale Bilder 4:5, breite Bilder (wide) 8:5. */
-const TEAM = "Kilian Ritter, Pascal Ristl";
+/* Team: Namen immer mit " | " trennen, Kilian Ritter zuerst. */
+const TEAM = "Kilian Ritter | Pascal Ristl";
 
 window.PROJECTS = [
   {
@@ -167,12 +168,12 @@ window.PROJECTS = [
       { src: "bilder/axxi-raumexperiment/02.jpg", caption: "László Moholy-Nagy, A XXI, 1925" },
       { src: "bilder/axxi-raumexperiment/03.jpg", caption: "Relief nach dem Original" },
       { src: "bilder/axxi-raumexperiment/06.jpg", caption: "Plakat", plakat: true },
-      { src: "bilder/axxi-raumexperiment/05.jpg", caption: "Finales Modell, M 1:100" },
+      { src: "bilder/axxi-raumexperiment/05.jpg", caption: "Finales Modell | M 1:100" },
       { src: "bilder/axxi-raumexperiment/07.jpg", wide: true, caption: "Weißmodell, Draufsicht" },
       { src: "bilder/axxi-raumexperiment/zonen.jpg", wide: true, caption: "Nutzung: Büro, Café, Meetingpoint, Thinktank, Durchgang, kreatives Arbeiten" },
-      { src: "bilder/axxi-raumexperiment/grundriss-eg.jpg", wide: true, caption: "Grundriss EG, M 1:100" },
-      { src: "bilder/axxi-raumexperiment/grundriss-og.jpg", wide: true, caption: "Grundriss OG, M 1:100" },
-      { src: "bilder/axxi-raumexperiment/08.jpg", wide: true, caption: "Schnitt A-A, M 1:100" },
+      { src: "bilder/axxi-raumexperiment/grundriss-eg.jpg", wide: true, caption: "Grundriss EG | M 1:100" },
+      { src: "bilder/axxi-raumexperiment/grundriss-og.jpg", wide: true, caption: "Grundriss OG | M 1:100" },
+      { src: "bilder/axxi-raumexperiment/08.jpg", wide: true, caption: "Schnitt A-A | M 1:100" },
       { src: "bilder/axxi-raumexperiment/09.jpg", wide: true, caption: "Überblick aus dem Bürobereich" },
       { src: "bilder/axxi-raumexperiment/10.jpg", wide: true, caption: "Kontext: Einbauten im Bestand" },
       { src: "bilder/axxi-raumexperiment/cafe.jpg", wide: true, caption: "Rendering: Blickbeziehung in den Café-Bereich" },
@@ -190,14 +191,14 @@ window.PROJECTS = [
       "Ein brutalistischer Monolith, bewusst als Fremdkörper in die Landschaft gesetzt und doch mit dem Hang verzahnt. Der Sockel liegt im Gelände, der obere Baukörper kragt weit aus und öffnet sich mit raumhohen Verglasungen zum Panorama.",
       "Das Modell ist aus Finnpappe gebaut, die im Maßstab 1:100 wie Sichtbeton wirkt. Das Gelände ist ein Schichtmodell, die Verglasung aus Vivak, die Bäume sind getrocknete Disteln. Farbe setzen nur Figuren, Auto und Pool."
     ],
-    credits: [["Betreuung", "Prof. Dipl.-Ing. Jonas Kessler"], ["Team", TEAM]],
-    cover: "bilder/naturblock/02.jpg",
+    credits: [["Betreuung", "Dipl.-Ing. Jonas Kessler"], ["Team", TEAM]],
+    cover: "bilder/naturblock/titel.jpg",
     images: [
       { src: "bilder/naturblock/01.jpg", wide: true },
       "bilder/naturblock/02.jpg",
       "bilder/naturblock/03.jpg",
       { src: "bilder/naturblock/04.jpg", wide: true },
-      { src: "bilder/naturblock/05.jpg", caption: "Geländeplan, Schichtmodell M 1:100" },
+      { src: "bilder/naturblock/05.jpg", caption: "Geländeplan, Schichtmodell | M 1:100" },
       "bilder/naturblock/06.jpg"
     ]
   },
@@ -209,24 +210,22 @@ window.PROJECTS = [
     year: "2025/26",
     text: [
       "Eine Transformation des Thonet-Freischwingers S32. Das Prinzip des Freischwingens wird isoliert und das Gestell selbst zur Liege: ein monolithischer Körper aus einem Material, der die typischen Radien des Klassikers aufnimmt.",
-      "Gedacht ist der Freilieger aus Bio-Composite aus Hanf- und Flachsfasern. Er ist leicht, dämpft Schwingungen und eignet sich für draußen. Das Modell entstand aus angeritztem Karton, gebogenen Aluminiumstäben und kaschiertem Papier."
+      "Material\nNachhaltige Faserverbundwerkstoffe auf Basis von Naturfasern wie Hanf oder Flachs kombinieren hohe strukturelle Leistungsfähigkeit mit ökologischen Vorteilen. Ihre Funktion beruht auf dem Zusammenspiel von zugfesten Fasern und einer formgebenden Matrix aus Harz, die Druckkräfte aufnimmt und die Fasern fixiert. Durch gezielte Faserorientierung entsteht eine hohe Stabilität bei minimalem Gewicht, während die natürliche Zellstruktur der Fasern Schwingungen effektiv dämpft.",
+      "Moderne biobasierte Epoxidharze sowie thermoplastische Systeme verbessern die Nachhaltigkeitsbilanz erheblich, da sie den Einsatz fossiler Rohstoffe reduzieren und teilweise recyclingfähig sind. Die Herstellung erfolgt über textile Vorverarbeitung der Fasern und formgebende Verfahren wie Vakuuminfusion oder Prepreg-Pressen, gefolgt von einer energieeffizienten Aushärtung.",
+      "Naturfaser-Composites weisen einen günstigen CO₂-Fußabdruck auf, da die Pflanzen während ihres Wachstums CO₂ binden, ressourcenschonend angebaut werden können und regionale Wertschöpfung ermöglichen. In Kombination mit zeitgemäßen Fertigungstechnologien entstehen so innovative, leichte und nachhaltige Materialien, die sich besonders für zukunftsorientierte Anwendungen in Architektur und Möbeldesign eignen."
     ],
-    credits: [["Betreuung", "Dipl. Des. Simone Raus"], ["Team", "Kilian Ritter, Pascal Ristl, Clemens Sammer, Julius Polonius"]],
-    cover: "bilder/freilieger/08.jpg",
+    /* Bei vielen Teammitgliedern: Liste statt Text, dann steht jeder Name in einer eigenen Zeile */
+    credits: [["Betreuung", "Dipl. Des. Simone Raus"], ["Team", ["Kilian Ritter", "Pascal Ristl", "Clemens Sammer", "Julius Polonius"]]],
+    cover: "bilder/freilieger/titel.jpg",
     images: [
-      { src: "bilder/freilieger/01.jpg", wide: true, caption: "Konzeptvisualisierung" },
-      { src: "bilder/freilieger/02.jpg", wide: true, caption: "Dreitafelprojektion und Isometrie" },
-      "bilder/freilieger/03.jpg",
-      "bilder/freilieger/04.jpg",
-      "bilder/freilieger/05.jpg",
-      "bilder/freilieger/06.jpg",
-      { src: "bilder/freilieger/07.jpg", wide: true, caption: "Seitenansicht" },
-      { src: "bilder/freilieger/08.jpg", caption: "Vorderansicht" },
-      { src: "bilder/freilieger/09.jpg", caption: "Kantenausbildung" },
+      /* Nur Booklet-Folien 14, 15, 16, 17, 18, 6 und das Plakat, keine Fotos von Personen */
       { src: "bilder/freilieger/10.jpg", wide: true, caption: "Rendering mit Bio-Composite" },
-      { src: "bilder/freilieger/11.jpg", wide: true, caption: "Rendering Außenbereich" },
+      { src: "bilder/freilieger/02.jpg", wide: true, caption: "Dreitafelprojektion und Isometrie" },
+      { src: "bilder/freilieger/skizzen.jpg", wide: true, caption: "Skizzengetriebener Entwurfsprozess" },
       { src: "bilder/freilieger/12.jpg", caption: "Rendering Innenraum" },
-      { src: "bilder/freilieger/13.jpg", caption: "Plakat", plakat: true }
+      { src: "bilder/freilieger/13.jpg", caption: "Plakat", plakat: true },
+      { src: "bilder/freilieger/11.jpg", wide: true, caption: "Rendering Außenbereich" },
+      { src: "bilder/freilieger/material.jpg", wide: true, caption: "Material" }
     ]
   },
   {
@@ -240,14 +239,16 @@ window.PROJECTS = [
       "Daraus entstand ein Steckmodell. Lamellen greifen in eine radial geschlitzte Basisscheibe und bauen die Form Schicht für Schicht wieder auf."
     ],
     credits: [["Betreuung", "Prof. Ulrike Förschler"], ["Team", TEAM]],
-    cover: "bilder/bio-strukturen/11.jpg",
+    cover: "bilder/bio-strukturen/01.jpg",
     images: [
-      "bilder/bio-strukturen/01.jpg",
+      { src: "bilder/bio-strukturen/01-breit.jpg", wide: true },
       { src: "bilder/bio-strukturen/02.jpg", caption: "Sehen" },
-      "bilder/bio-strukturen/03.jpg",
+      { src: "bilder/bio-strukturen/03.jpg", caption: "Sehen" },
       { src: "bilder/bio-strukturen/04.jpg", caption: "Sehen, Schnitt" },
+      { src: "bilder/bio-strukturen/04b.jpg", caption: "Sehen, Schnitt" },
       { src: "bilder/bio-strukturen/05.jpg", caption: "Messen" },
-      { src: "bilder/bio-strukturen/06.jpg", caption: "Messen, Aufsicht" },
+      { src: "bilder/bio-strukturen/06.jpg", caption: "Messen" },
+      { src: "bilder/bio-strukturen/geometrisierter-schnitt.jpg", wide: true, caption: "Geometrisierter Schnitt" },
       { src: "bilder/bio-strukturen/07.jpg", wide: true, caption: "Umsetzen" },
       { src: "bilder/bio-strukturen/08.jpg", caption: "Basisscheibe" },
       "bilder/bio-strukturen/09.jpg",
@@ -273,11 +274,11 @@ window.PROJECTS = [
       "bilder/treppenschau/03.jpg",
       "bilder/treppenschau/04.jpg",
       "bilder/treppenschau/05.jpg",
-      { src: "bilder/treppenschau/06.jpg", wide: true, caption: "Schwarzplan, M 1:2000" },
+      { src: "bilder/treppenschau/06.jpg", wide: true, caption: "Schwarzplan | M 1:2000" },
       { src: "bilder/treppenschau/07.jpg", caption: "Aufmaß, Freihandskizze" },
       { src: "bilder/treppenschau/08.jpg", caption: "Aufmaß, Freihandskizze" },
-      { src: "bilder/treppenschau/09.jpg", wide: true, caption: "Grundriss, M 1:20" },
-      { src: "bilder/treppenschau/10.jpg", wide: true, caption: "Schnitt B-B, M 1:20" }
+      { src: "bilder/treppenschau/09.jpg", wide: true, caption: "Grundriss | M 1:20" },
+      { src: "bilder/treppenschau/10.jpg", wide: true, caption: "Schnitt B-B | M 1:20" }
     ]
   }
 ];
