@@ -351,8 +351,8 @@ window.PROJECTS = [
     images: [
       /* Nur Booklet-Folien 14, 15, 16, 17, 18, 6 und das Plakat, keine Fotos von Personen; 360°-Fahrt und Weißmodell aus Freischwinger .obj (Blender) */
       { src: "bilder/freilieger/10.jpg", wide: true, caption: "Rendering mit Bio-Composite" },
-      { src: "bilder/freilieger/freilieger-360.mp4", wide: true, caption: "360°-Ansicht, Weißmodell mit Bodenplatte" },
-      { src: "bilder/freilieger/weissmodell.jpg", wide: true, caption: "Weißmodell mit Bodenplatte" },
+      { src: "bilder/freilieger/freilieger-360.mp4", wide: true, caption: "360°-Ansicht, Weißmodell" },
+      { src: "bilder/freilieger/weissmodell.jpg", wide: true, caption: "Weißmodell" },
       { src: "bilder/freilieger/02.jpg", wide: true, caption: "Dreitafelprojektion und Isometrie" },
       { src: "bilder/freilieger/skizzen.jpg", wide: true, caption: "Skizzengetriebener Entwurfsprozess" },
       { src: "bilder/freilieger/12.jpg", caption: "Rendering Innenraum" },
