@@ -227,22 +227,23 @@ window.PROJECTS = [
     cover: "bilder/vau2/titel.jpg",
     images: [
       /* Booklet-Folien 1 (Deckblatt), 11, 12, 17, 18, 19, 28, 29, 32, 35, 37; Animation und Rendering aus Tischbock1.3dm (Blender) */
+      /* Reihenfolge: Finales Modell, Animation, Rendering, Bemaßung und Detail, Skizze Endkappe, Rhino-Modell, Bilder, Vormodelle */
       { src: "bilder/vau2/p28.jpg", wide: true, caption: "Finales Modell" },
-      { src: "bilder/vau2/p11a.jpg", caption: "Vormodell mit Funktion, Fokus auf Flatpack" },
-      { src: "bilder/vau2/p11b.jpg", caption: "Bau des Vormodells mit Funktion" },
-      { src: "bilder/vau2/p12.jpg", wide: true, caption: "Großes Modell zur Überprüfung der Stabilität" },
-      { src: "bilder/vau2/skizze.jpg", wide: true, caption: "Skizze und Bemaßung der Endkappe" },
+      { src: "bilder/vau2/flatpack.mp4", wide: true, caption: "Animation: Zusammenklappen zum Flatpack" },
+      { src: "bilder/vau2/rendering-blender.jpg", wide: true, caption: "Rendering des finalen Modells" },
       { src: "bilder/vau2/zeichnung.jpg", wide: true, caption: "Bemaßung Tischbock" },
       { src: "bilder/vau2/p19.jpg", wide: true, caption: "Detail: Verbindung der zwei Rohre" },
+      { src: "bilder/vau2/skizze.jpg", wide: true, caption: "Skizze und Bemaßung der Endkappe" },
+      { src: "bilder/vau2/rendering-1.jpg", wide: true, caption: "Rhino-Modell" },
       { src: "bilder/vau2/p29.jpg", caption: "Lackierter Tischbock, Verbindungsdetail" },
       { src: "bilder/vau2/p32a.jpg", caption: "Finales Modell" },
       { src: "bilder/vau2/p32b.jpg", caption: "Finales Modell" },
       { src: "bilder/vau2/p35a.jpg", caption: "Detail" },
       { src: "bilder/vau2/p35b.jpg", caption: "Detail" },
       { src: "bilder/vau2/p35c.jpg", caption: "Detail" },
-      { src: "bilder/vau2/rendering-1.jpg", wide: true, caption: "Rhino-Modell" },
-      { src: "bilder/vau2/flatpack.mp4", wide: true, caption: "Animation: Zusammenklappen zum Flatpack" },
-      { src: "bilder/vau2/rendering-blender.jpg", wide: true, caption: "Rendering des finalen Modells" }
+      { src: "bilder/vau2/p11a.jpg", caption: "Vormodell mit Funktion, Fokus auf Flatpack" },
+      { src: "bilder/vau2/p11b.jpg", caption: "Bau des Vormodells mit Funktion" },
+      { src: "bilder/vau2/p12.jpg", wide: true, caption: "Großes Modell zur Überprüfung der Stabilität" }
     ]
   },
   {
