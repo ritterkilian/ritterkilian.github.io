@@ -379,7 +379,13 @@
   function bigRect(ratio, plakat) {
     const vw = window.innerWidth, vh = window.innerHeight, m = vw <= 760 ? 12 : 32;
     let w = vw - 2 * m, h = w / ratio;
-    if (plakat) { w = Math.min(w, 1200); h = w / ratio; return { left: (vw - w) / 2, top: m, width: w, height: h, radius: 14 }; }
+    if (plakat) {
+      // Querformat-Plakate über die ganze Bildschirmbreite, Hochformat höchstens 1200 px breit.
+      if (ratio <= 1) w = Math.min(w, 1200);
+      h = w / ratio;
+      const top = h < vh - 2 * m ? (vh - h) / 2 : m;
+      return { left: (vw - w) / 2, top, width: w, height: h, radius: 14 };
+    }
     if (h > vh - 2 * m) { h = vh - 2 * m; w = h * ratio; }
     return { left: (vw - w) / 2, top: (vh - h) / 2, width: w, height: h, radius: 14 };
   }

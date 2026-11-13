@@ -149,8 +149,137 @@ window.PRIVACY = {
    normale Bilder 4:5, breite Bilder (wide) 8:5. */
 /* Team: Namen immer mit " | " trennen, Kilian Ritter zuerst. */
 const TEAM = "Kilian Ritter | Pascal Ristl";
+const TEAM_LUISA = "Kilian Ritter | Luisa Oberndorfer";
+const SOMMERAUSSTELLUNG = "Ausgestellt auf der Sommerausstellung 2026 der Technischen Hochschule Rosenheim.";
 
 window.PROJECTS = [
+  /* ---------- 2. Semester, Sommersemester 2026 ---------- */
+  {
+    slug: "papavero",
+    title: "Papavero – Rome Rain Rooms",
+    context: "Entwurf Raum 2",
+    category: "Installation, öffentlicher Raum",
+    year: "2026",
+    text: [
+      "Papavero ist eine öffentliche Installation auf der Piazza Navona in Rom, die Regenwasser sammelt und speichert. Ihre Form ist der Mohnblume entlehnt: Die organische Gestalt wird zu einer skulpturalen Struktur, die für die Zerbrechlichkeit und die Widerstandskraft der Natur steht und Wasser als gemeinsame, kostbare Ressource sichtbar macht.",
+      "Die Piazza liegt auf dem antiken Stadion des Domitian, seit Jahrhunderten prägt Wasser ihre Identität, allen voran Berninis Vierströmebrunnen. Die drei Meter hohe Installation steht bewusst auf der Achse der bestehenden Brunnen und ordnet sich dem monumentalen Maßstab des Platzes unter.",
+      "Der weite Trichter leitet das Regenwasser in einen wassergefüllten Sitzsack, der sich unter dem Gewicht der Besucher verformt und das Wasser körperlich erfahrbar macht. Ist er voll, fließt das überschüssige Wasser durch das zentrale Überlaufrohr unter der Plattform ab und der Kreislauf beginnt von vorn. Bei schönem Wetter lädt der Sitzsack zum Verweilen ein.",
+      SOMMERAUSSTELLUNG
+    ],
+    credits: [["Betreuung", ["Prof. Denise Dih", "Prof. Dipl.-Ing. Bernd Meinlschmidt"]], ["Team", TEAM_LUISA]],
+    cover: "bilder/papavero/titel.jpg",
+    images: [
+      { src: "bilder/papavero/01.jpg", wide: true, caption: "Papavero bei Sonne" },
+      { src: "bilder/papavero/02.jpg", caption: "Papavero bei Regen" },
+      { src: "bilder/papavero/perspektive.jpg", caption: "Perspektive" },
+      { src: "bilder/papavero/grundriss.jpg", caption: "Grundriss | M 1:25" },
+      { src: "bilder/papavero/schnitt-aa.jpg", caption: "Schnitt A-A | M 1:25" },
+      { src: "bilder/papavero/wasser-1.jpg", caption: "Wasserdiagramm: Sammeln und Nutzen" },
+      { src: "bilder/papavero/wasser-2.jpg", caption: "Wasserdiagramm: Überlauf und Ablauf" },
+      { src: "bilder/papavero/rom.jpg", caption: "Rom | M 1:5000" },
+      { src: "bilder/papavero/piazza.jpg", caption: "Piazza Navona | M 1:1000" },
+      { src: "bilder/papavero/plakat-1.jpg", caption: "Plakat, Seite 1", plakat: true },
+      { src: "bilder/papavero/plakat-2.jpg", caption: "Plakat, Seite 2", plakat: true }
+    ]
+  },
+  {
+    slug: "gegensaetzlich",
+    title: "Gegensätzlich",
+    context: "Kommunikation und Komposition",
+    category: "Raum, Darstellung",
+    year: "2026",
+    text: [
+      "Der Entwurf entwickelt sich aus dem Adjektiv „gegensätzlich“. Im Erdgeschoss entsteht eine enge, dunkle und beklemmende Raumwirkung, die durch geringe Öffnungen sowie eine labyrinthartige Struktur verstärkt wird. Die Atmosphäre wirkt introvertiert, massiv und schützend. Die Wegeführung ist bewusst zurückhaltend gestaltet und erzeugt ein Gefühl von Orientierungssuche sowie räumlicher Verdichtung.",
+      "Im Obergeschoss öffnet sich der Raum zu einer hellen, weiten und lichtdurchfluteten Ebene. Großzügige Öffnungen ermöglichen weite Ausblicke und lassen Tageslicht tief in den Raum eindringen. Die zuvor spürbare Schwere löst sich auf und wird durch ein Gefühl von Freiheit, Leichtigkeit und Offenheit ersetzt. Die fließende Verbindung von Innen- und Außenraum lässt Weite erleben und schafft eine besondere räumliche Atmosphäre.",
+      SOMMERAUSSTELLUNG
+    ],
+    credits: [["Betreuung", "Wolfgang Jäger"], ["Entwurf und Plakat", "Kilian Ritter"]],
+    cover: "bilder/gegensaetzlich/titel.jpg",
+    images: [
+      /* Alles aus Plakat 7 (KOKO/Abgabe Plakat/Plakat-7.pdf) */
+      { src: "bilder/gegensaetzlich/plakat.jpg", wide: true, caption: "Plakat", plakat: true },
+      { src: "bilder/gegensaetzlich/aufbau.gif", wide: true, caption: "Animation: Aufbau des Entwurfs" },
+      { src: "bilder/gegensaetzlich/grundriss-eg.jpg", caption: "Grundriss EG | M 1:100" },
+      { src: "bilder/gegensaetzlich/grundriss-og.jpg", caption: "Grundriss OG | M 1:100" },
+      { src: "bilder/gegensaetzlich/schnitt-aa.jpg", caption: "Schnitt A-A | M 1:100" },
+      { src: "bilder/gegensaetzlich/schnitt-bb.jpg", caption: "Schnitt B-B | M 1:100" },
+      { src: "bilder/gegensaetzlich/suedansicht.jpg", wide: true, caption: "Südansicht | M 1:100" },
+      { src: "bilder/gegensaetzlich/01.jpg", wide: true, caption: "Ausblick in die Ferne" },
+      { src: "bilder/gegensaetzlich/02.jpg", wide: true, caption: "Innenansicht Labyrinth" },
+      { src: "bilder/gegensaetzlich/03.jpg", wide: true, caption: "Blick vom Podest aus dem Dachfenster" },
+      { src: "bilder/gegensaetzlich/04.jpg", wide: true, caption: "Blick ins Erdgeschoss" },
+      { src: "bilder/gegensaetzlich/05.jpg", wide: true, caption: "Erdgeschoss" },
+      { src: "bilder/gegensaetzlich/positionsplan.jpg", wide: true, caption: "Positionsplan | M 1:500" }
+    ]
+  },
+  {
+    slug: "vau2",
+    title: "VAU2 – Tischbock",
+    context: "Design 2",
+    category: "Möbeldesign, Objekt",
+    year: "2026",
+    text: [
+      "VAU2 ist ein Tischbock aus einem durchgehenden Rundrohr: gebogen, gekreuzt und durch seine Geometrie stabilisiert. Ein eingebautes Seil steift den Bock zusätzlich aus, steckbare Endkappen schließen die Rohrenden.",
+      "Aus der Analyse bestehender Konstruktionen entstanden Vormodelle mit Fokus auf Flatpack und Seilen, dann ein Modell im Maßstab 1:1. Für den finalen Tischbock wurden die Rundrohre gebogen, abgelängt, verbunden und lackiert. Das Farbportfolio reicht von Fernblau über Terrakotta, Salbeigrün und Violett bis Kalkweiß.",
+      SOMMERAUSSTELLUNG
+    ],
+    credits: [["Betreuung", "Prof. Anette Ponholzer"], ["Team", TEAM]],
+    cover: "bilder/vau2/titel.jpg",
+    images: [
+      /* Booklet-Folien 1 (Deckblatt), 11, 12, 17, 18, 19, 28, 29, 32, 35, 37; Animation und Rendering aus Tischbock1.3dm (Blender) */
+      { src: "bilder/vau2/p28.jpg", wide: true, caption: "Finales Modell" },
+      { src: "bilder/vau2/p11a.jpg", caption: "Vormodell mit Funktion, Fokus auf Flatpack" },
+      { src: "bilder/vau2/p11b.jpg", caption: "Bau des Vormodells mit Funktion" },
+      { src: "bilder/vau2/p12.jpg", wide: true, caption: "Großes Modell zur Überprüfung der Stabilität" },
+      { src: "bilder/vau2/skizze.jpg", wide: true, caption: "Skizze und Bemaßung der Endkappe" },
+      { src: "bilder/vau2/zeichnung.jpg", wide: true, caption: "Bemaßung Tischbock" },
+      { src: "bilder/vau2/p19.jpg", wide: true, caption: "Detail: Verbindung der zwei Rohre" },
+      { src: "bilder/vau2/p29.jpg", caption: "Lackierter Tischbock, Verbindungsdetail" },
+      { src: "bilder/vau2/p32a.jpg", caption: "Finales Modell" },
+      { src: "bilder/vau2/p32b.jpg", caption: "Finales Modell" },
+      { src: "bilder/vau2/p35a.jpg", caption: "Detail" },
+      { src: "bilder/vau2/p35b.jpg", caption: "Detail" },
+      { src: "bilder/vau2/p35c.jpg", caption: "Detail" },
+      { src: "bilder/vau2/rendering-1.jpg", wide: true, caption: "Rhino-Modell" },
+      { src: "bilder/vau2/flatpack.mp4", wide: true, caption: "Animation: Zusammenklappen zum Flatpack" },
+      { src: "bilder/vau2/rendering-blender.jpg", wide: true, caption: "Rendering des finalen Modells" }
+    ]
+  },
+  {
+    slug: "wasserwacht",
+    title: "Wasserwacht Salus",
+    context: "Baukonstruktion 2",
+    category: "Holzbau, Konstruktion",
+    year: "2026",
+    text: [
+      "Ein Neubau für die Wasserwacht am Tachinger See. Der Entwurf orientiert sich an der Brücke eines Schiffes: Die markanten schrägen Fenster des Überwachungsraums im Obergeschoss greifen deren Formensprache auf, stellen den Bezug zum Wasser her und ermöglichen eine weite, klare Sicht auf den Schwimmbereich, genau dort, wo sie gebraucht wird.",
+      "Das Gebäude steht als Holzbau auf Betonstützen. So werden Funktion und Gestaltung verbunden und die zentrale Aufgabe der Wasserwacht, die Überwachung und Sicherheit der Badegäste, architektonisch sichtbar.",
+      "Im Entwurfsprozess wurde von einer Träger-Balken-Konstruktion auf eine Massivholzdecke umgestellt, um eine ruhigere und klarere Deckenkonstruktion zu erhalten. Die Massivholzdecke ermöglicht größere Spannweiten bei geringer Konstruktionshöhe, verbessert die räumliche Wirkung und sorgt gleichzeitig für eine hochwertige, sichtbare Holzoberfläche. Dadurch werden Konstruktion, Gestaltung und Materialität zu einem stimmigen Gesamtkonzept verbunden."
+    ],
+    credits: [["Betreuung", "Frau Körner"], ["Team", TEAM_LUISA]],
+    cover: "bilder/wasserwacht/titel.jpg",
+    images: [
+      /* Abgabe 09.07.26, Seiten 1, 3, 9–13, 19–24, 29, 32, 34, 37 */
+      { src: "bilder/wasserwacht/p01.jpg", wide: true, caption: "Perspektive" },
+      { src: "bilder/wasserwacht/p03.jpg", wide: true, caption: "Lageplan | M 1:500" },
+      { src: "bilder/wasserwacht/p09.jpg", wide: true, caption: "Ostansicht | M 1:50" },
+      { src: "bilder/wasserwacht/p10.jpg", wide: true, caption: "Westansicht | M 1:50" },
+      { src: "bilder/wasserwacht/p11.jpg", wide: true, caption: "Konstruktionsraster" },
+      { src: "bilder/wasserwacht/p12.jpg", wide: true, caption: "Konstruktionsraster" },
+      { src: "bilder/wasserwacht/p13.jpg", wide: true, caption: "Konstruktionsraster" },
+      { src: "bilder/wasserwacht/p19.jpg", wide: true, caption: "Grundriss EG | M 1:50" },
+      { src: "bilder/wasserwacht/p20.jpg", wide: true, caption: "Grundriss OG | M 1:50" },
+      { src: "bilder/wasserwacht/p21.jpg", wide: true, caption: "Schnitt A-A | M 1:50" },
+      { src: "bilder/wasserwacht/p22.jpg", wide: true, caption: "Schnitt B-B | M 1:50" },
+      { src: "bilder/wasserwacht/p23.jpg", wide: true, caption: "Wandaufbau Fassade, Dreitafelprojektion | M 1:10" },
+      { src: "bilder/wasserwacht/p24.jpg", wide: true, caption: "Fenster, Dreitafelprojektion | M 1:10" },
+      { src: "bilder/wasserwacht/p29.jpg", wide: true, caption: "Detail Fassadenschnitt | M 1:10" },
+      { src: "bilder/wasserwacht/p32.jpg", wide: true, caption: "Explosionszeichnung Tragwerk" },
+      { src: "bilder/wasserwacht/p34.jpg", wide: true, caption: "Konstruktionsmodell" },
+      { src: "bilder/wasserwacht/p37.jpg", wide: true, caption: "Konstruktionsmodell" }
+    ]
+  },
+  /* ---------- 1. Semester, Wintersemester 2025/26 ---------- */
   {
     slug: "axxi-raumexperiment",
     title: "AXXI – Raumexperiment",
