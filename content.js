@@ -372,7 +372,7 @@ window.PROJECTS = [
       "Daraus entstand ein Steckmodell. Lamellen greifen in eine radial geschlitzte Basisscheibe und bauen die Form Schicht für Schicht wieder auf."
     ],
     credits: [["Betreuung", "Prof. Ulrike Förschler"], ["Team", TEAM]],
-    cover: "bilder/bio-strukturen/01.jpg",
+    cover: "bilder/bio-strukturen/titel.jpg",
     images: [
       { src: "bilder/bio-strukturen/01-breit.jpg", wide: true },
       { src: "bilder/bio-strukturen/artischocke-360.mp4", wide: true, caption: "360°-Ansicht, Weißmodell" },
