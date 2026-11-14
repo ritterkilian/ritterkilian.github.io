@@ -61,11 +61,11 @@ window.ABOUT = [
   },
   {
     title: "Schwerpunkte",
-    items: ["Innenarchitektur", "Gastronomie & Wohnen", "Produkt- und Möbeldesign", "Materialrecherche", "Visualisierung & Fotografie"]
+    items: ["Innenarchitektur & Raumentwurf", "Möbel- und Objektdesign", "Modellbau", "Konstruktion & Holzbau", "Visualisierung & Darstellung"]
   },
   {
     title: "Werkzeuge",
-    items: ["Rhino", "Archicad", "Affinity", "Blender"]
+    items: ["Rhino", "Archicad", "Blender", "Affinity"]
   }
   /* Kontakt wird automatisch aus SITE oben ergänzt. */
 ];

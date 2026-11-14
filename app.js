@@ -230,10 +230,13 @@
     return `
     <div class="grid index">
       ${PROJECTS.map((p, pi) => `
-        <a class="tile" href="#${esc(p.slug)}" aria-label="${esc(p.title)}">
-          ${source(coverSrc(p), p.title, 1, pi, pi > 7)}
-          <span class="pill hover"><span>${esc(p.title)}</span></span>
-        </a>`).join("")}
+        <div class="cell">
+          <a class="tile" href="#${esc(p.slug)}" aria-label="${esc(p.title)}">
+            ${source(coverSrc(p), p.title, 1, pi, pi > 7)}
+            <span class="pill hover"><span>${esc(p.title)}</span></span>
+          </a>
+          <a class="tile-cap" href="#${esc(p.slug)}" tabindex="-1" aria-hidden="true">${esc(p.title)}</a>
+        </div>`).join("")}
     </div>
     ${footer()}`;
   }

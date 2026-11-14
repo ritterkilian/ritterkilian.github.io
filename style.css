@@ -249,6 +249,14 @@ main.enter { animation: view-in .45s ease-out; }
 }
 a.tile:hover .hover, a.tile:focus-visible .hover { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 
+/* Ohne Maus (Handy, Tablet) gibt es kein Hovern: Projektname steht dann unter der Kachel */
+.index .cell { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.tile-cap { display: none; text-align: center; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (hover: none) {
+  .tile-cap { display: block; }
+  .tile .hover { display: none; }
+}
+
 /* ---------- Projektseite ---------- */
 .project { align-items: start; }
 .side {
@@ -432,6 +440,8 @@ a.tile:hover .hover, a.tile:focus-visible .hover { opacity: 1; transform: transl
   main { padding-top: calc(var(--top) + 80px + var(--lead)); }
 
   .side { grid-column: 1 / -1; position: static; }
+  /* Langer Projekttitel bekommt am Handy die ganze Breite, „Zurück“ darunter */
+  .side-bar .pill { grid-column: 1 / -1; }
   body.side-stuck .drop--name { opacity: 1; pointer-events: auto; }
   .drop--name { grid-column: 1 / -1; }
   .panel--intro .statement { font-size: 17px; line-height: 21px; }
