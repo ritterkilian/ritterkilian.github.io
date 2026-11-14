@@ -210,6 +210,26 @@ main.enter { animation: view-in .45s ease-out; }
 }
 .ph span { text-transform: uppercase; letter-spacing: .8px; }
 
+/* Deckblätter wie im Vorbild: das Bild ragt in Ruhe um einen Rasterabstand
+   über die Kachel hinaus und gleitet beim Hovern auf genau Kachelgröße. Nur mit Maus. */
+@media (hover: hover) and (pointer: fine) {
+  .index a.tile img, .index a.tile video {
+    inset: auto; left: 50%; top: 50%;
+    width: calc(100% + 2 * var(--gap));
+    height: calc(100% + 2 * var(--gap));
+    transform: translate(-50%, -50%);
+    transition: width .15s cubic-bezier(.4, 0, .2, 1), height .15s cubic-bezier(.4, 0, .2, 1), opacity .4s ease;
+  }
+  .index a.tile:hover img, .index a.tile:hover video,
+  .index a.tile:focus-visible img, .index a.tile:focus-visible video {
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .index a.tile img, .index a.tile video { transition: opacity .4s ease; }
+}
+
 /* Titel beim Hovern: kleine Milchglas-Pill mittig im Bild */
 .tile .hover {
   position: absolute; z-index: 2;
