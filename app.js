@@ -258,7 +258,7 @@
       <aside class="side">
         <div class="side-bar">
           <div class="pill pill--title"><span>${esc(p.title)}</span></div>
-          <a class="pill" href="#"><span>Zurück zur Übersicht</span><span class="tri" aria-hidden="true">◀</span></a>
+          <a class="pill" href="#"><span>Zurück zur Übersicht</span><span class="arr arr--back" aria-hidden="true"></span></a>
         </div>
         <div class="panel info-card">
           <section>

@@ -271,7 +271,17 @@ a.tile:hover .hover, a.tile:focus-visible .hover { opacity: 1; transform: transl
 .side-bar { grid-column: 1 / -1; display: grid; grid-template-columns: inherit; gap: var(--gap); }
 .pill--title { cursor: default; }
 .pill--title:hover { background: var(--fill); }
-.tri { color: #c4c4c4; font-size: 8px; }
+/* „Zurück zur Übersicht“: derselbe gezeichnete Pfeil wie im Header, nach links (kein Schriftzeichen, das am Handy als Emoji erscheint) */
+.pill .arr.arr--back {
+  width: 8px;
+  height: 10px;
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  opacity: 1;
+  transform: none;
+  color: #d9d9d9;
+  transition: color .15s ease;
+}
+.pill:hover .arr--back, .pill:focus-visible .arr--back { color: var(--ink); }
 
 .info-card {
   grid-column: 1;
