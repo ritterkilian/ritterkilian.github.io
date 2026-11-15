@@ -167,7 +167,7 @@ window.PROJECTS = [
       SOMMERAUSSTELLUNG
     ],
     credits: [["Betreuung", ["Prof. Denise Dih", "Prof. Dipl.-Ing. Bernd Meinlschmidt"]], ["Team", TEAM_LUISA]],
-    cover: "bilder/papavero/titel.jpg",
+    cover: "bilder/papavero/titel-weissmodell.jpg",
     images: [
       { src: "bilder/papavero/01.jpg", wide: true, caption: "Papavero bei Sonne" },
       { src: "bilder/papavero/02.jpg", caption: "Papavero bei Regen" },
