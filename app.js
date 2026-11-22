@@ -19,7 +19,7 @@
 
   /* ---------- Medien ---------- */
   function placeholder(n, k) {
-    return `<div class="ph" style="--a:${ANGLES[k % ANGLES.length]}"><span>Bild ${String(n).padStart(2, "0")}</span></div>`;
+    return `<div class="ph" style="--a:${ANGLES[k % ANGLES.length]}"></div>`;  // leer: beim Laden steht nichts in der Fläche
   }
 
   // Ein einzelnes Bild oder Video in einer Kachel. Liegt über einem Platzhalter,
